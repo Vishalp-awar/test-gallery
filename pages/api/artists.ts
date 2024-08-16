@@ -1,0 +1,102 @@
+// pages/api/artists.ts
+
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+interface Artist {
+  id: number;
+  name: string;
+  image: string;
+  profile: string;
+  portfolio: string;
+}
+
+const artists: Artist[] = [
+  {
+    id: 1,
+    name: "Vincent van Gogh",
+    image: "https://i.pinimg.com/originals/91/f2/58/91f2585c730fb724ec36df3e42ec018d.jpg",
+    profile: "Artist One is known for their abstract paintings and vibrant use of color.",
+    portfolio: "https://portfolio.artistone.com"
+  },
+  {
+    id: 2,
+    name: "Leonardo da Vinci",
+    image: "https://i.pinimg.com/originals/6a/ed/f0/6aedf0f17e5680b0073351f7915f40c8.jpg",
+    profile: "Artist Two specializes in digital illustrations and concept art.",
+    portfolio: "https://portfolio.artisttwo.com"
+  },
+  {
+    id: 3,
+    name: "Salvador Dalí",
+    image: "https://i.pinimg.com/originals/91/f2/58/91f2585c730fb724ec36df3e42ec018d.jpg",
+    profile: "Artist Three creates stunning landscape photographs and photo manipulations.",
+    portfolio: "https://portfolio.artistthree.com"
+  },
+  {
+    id: 4,
+    name: "Edvard Munch",
+    image: "https://uk.imageservice.sky.com/contentid/A5EK4mHuoHzPM8ypeqLq1/LAND_16_9?output-format=jpg&output-quality=19",
+    profile: "Artist Four is a sculptor known for their contemporary installations.",
+    portfolio: "https://portfolio.artistfour.com"
+  },
+  {
+    id: 5,
+    name: "Johannes Vermeer",
+    image: "https://c8.alamy.com/comp/F0WH49/artist-painting-a-cityscape-in-st-enochs-square-glasgow-scotland-uk-F0WH49.jpg",
+    profile: "Artist Five's work focuses on mixed media and experimental art forms.",
+    portfolio: "https://portfolio.artistfive.com"
+  },
+  {
+    id: 6,
+    name: "Rembrandt van Rijn",
+    image: "https://media.artgallery.nsw.gov.au/collection_images/3/36.1999%23%23S.jpg",
+    profile: "Artist Six is a graffiti artist whose work can be seen in various urban spaces.",
+    portfolio: "https://portfolio.artistsix.com"
+  },
+  {
+    id: 7,
+    name: "Pablo Picasso",
+    image: "https://tse2.mm.bing.net/th?id=OIP.mVyfA9Cp1sVI_dVNh8ZyMAHaFj&pid=Api&P=0&h=180",
+    profile: "Artist Seven creates intricate hand-drawn illustrations and comic art.",
+    portfolio: "https://portfolio.artistseven.com"
+  },
+  {
+    id: 8,
+    name: "Sandro Botticelli",
+    image: "https://i.pinimg.com/originals/91/f2/58/91f2585c730fb724ec36df3e42ec018d.jpg",
+    profile: "Artist Eight is a fashion designer known for their avant-garde collections.",
+    portfolio: "https://portfolio.artisteight.com"
+  },
+  {
+    id: 9,
+    name: "Gustav Klimt",
+    image: "https://i.pinimg.com/originals/6a/ed/f0/6aedf0f17e5680b0073351f7915f40c8.jpg",
+    profile: "Artist Nine's artwork focuses on political and social commentary.",
+    portfolio: "https://portfolio.artistnine.com"
+  },
+  {
+    id: 10,
+    name: "Grant Wood",
+    image: "https://c8.alamy.com/comp/F0WH49/artist-painting-a-cityscape-in-st-enochs-square-glasgow-scotland-uk-F0WH49.jpg",
+    profile: "Artist Ten is a ceramic artist known for their functional and decorative pieces.",
+    portfolio: "https://portfolio.artistten.com"
+  },
+  {
+    id: 11,
+    name: "Diego Velázquez",
+    image: "https://i.pinimg.com/originals/6d/81/1d/6d811d82ae59d80f3448f80bb3fab231.png",
+    profile: "Artist Eleven creates digital art pieces and interactive installations.",
+    portfolio: "https://portfolio.artisteleven.com"
+  },
+  {
+    id: 12,
+    name: "Jan van Eyck",
+    image: "https://media.artgallery.nsw.gov.au/collection_images/3/36.1999%23%23S.jpg",
+    profile: "Artist Twelve is a tattoo artist with a unique and recognizable style.",
+    portfolio: "https://portfolio.artisttwelve.com"
+  }
+];
+
+export default function handler(req: NextApiRequest, res: NextApiResponse<Artist[]>) {
+  res.status(200).json(artists);
+}

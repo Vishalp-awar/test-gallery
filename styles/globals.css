@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #3490dc;
+  --secondary-color: #ffed4a;
+  --glass-bg: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --faint-blue: #f0f8ff; /* Light faint blue color */
+}
+
+.btn.glass {
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+}
+
+.modal-box {
+  animation: fade-in 0.3s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dialog.open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-box {
+  max-width: 90%;
+  margin: auto;
+}
+
+.artworks-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.artwork-item, .artwork-detail {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+}
+
+.artwork-images img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.skeleton {
+  background-color: #e0e0e0;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
