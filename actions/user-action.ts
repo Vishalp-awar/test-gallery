@@ -1,16 +1,16 @@
 "use server";
 
 import User from "@/modals/user.modal";
-import {connect} from "@/db"
+import { connectDB } from "@/db";   // ✅ correct
 
-export async function createUser(user:any) {
+export async function createUser(user: any) {
+  try {
+    await connectDB();   // ✅ correct
 
-    try{
-       await connect();
-       const newUser = await User.create(user);
-       return JSON.parse(JSON.stringify(newUser));  
-    }catch(e) {
-        console.log(e)
-    }
-    
+    const newUser = await User.create(user);
+    return JSON.parse(JSON.stringify(newUser));
+  } catch (e) {
+    console.log(e);
+    throw e; // good practice
+  }
 }
