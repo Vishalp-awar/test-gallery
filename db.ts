@@ -1,37 +1,26 @@
-import mongoose, {Mongoose} from "mongoose"
-const MONGOOES_URL = process.env.MONGODB_URL;
+import mongoose from "mongoose";
 
-interface MongooesConnection{
-    conn: Mongoose | null;
-    promies: Promise<Mongoose> | null
+const MONGODB_URI = process.env.MONGODB_URI as string;
+
+if (!MONGODB_URI) {
+  throw new Error("❌ MONGODB_URI is not defined in environment variables");
 }
 
-let cached: MongooesConnection = (global as any).mongoose;
+let cached: any = global.mongoose || { conn: null, promise: null };
 
-if(!cached){
-    cached = (global as any).mongoose ={
-        conn:null,
-        promies:null
-    };
-}
+export async function connectDB() {
+  if (cached.conn) return cached.conn;
 
-export const connect = async () => {
-    if(cached.conn) {
-        return cached.conn;
-        }
-    cached.promies = cached.promies || mongoose.connect(MONGOOES_URL ,{
-        dbName: "NextJsUser",
-        bufferCommands: false,
-        connectTimeoutMS:3000,
-
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGODB_URI, {
+      dbName: "test", // your database name
+      bufferCommands: false,
+      connectTimeoutMS: 3000,
     });
+  }
 
-    cached.conn =await cached.promies;
+  cached.conn = await cached.promise;
+  global.mongoose = cached;
 
-    return cached.conn
-
-
-};
-
-
-
+  return cached.conn;
+}
